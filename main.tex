@@ -1,64 +1,71 @@
-%  \documentclass[blackhead, type=doctor]{hustthesis} % 博士学位论文: doctor, 硕士学位论文: master
-\documentclass[blackhead, type=doctor]{./Hust_style/hustthesis}
+\documentclass[UTF8,oneside]{ctexbook}
 \usepackage{subfiles}
+\usepackage{geometry}
+\geometry{top=3cm,bottom=2.5cm,left=3cm,right=2.5cm}
+\usepackage{hyperref}
+\usepackage[backend=biber,style=numeric]{biblatex}
+\addbibresource{preamble/ref.bib}
 
-\hustsetup { % 设置之间一定不能有空行
-  info =
-  {
-    title = { 中文标题 },
-    title* = { English Title },
-    degree = { academic }, % 学术型: academic, 专业型: professional
-    degree* = { Engineering }, % 英文学科
-    author = { 项德生 },
-    author* = { Desheng Xiang },
-    student-id = { D202080053 },
-    clc = { }, % 中图分类号
-    major = { 物理学 },
-    major* = { Physics },
-    supervisor = { 李霖\quad{} 教授 },
-    supervisor* = { Prof.Lin Li Supervisor },
-    date = { 2025-12-17 }, % 日期，不写这行的话会自动生成，写的话一定要按照这个格式
-    committee = % 答辩委员会成员,不写的话会自动生成7行空白的答辩委员会成员
-      { 张三 & 教授 & 华中科技大学 , 李四 & 教授 & 武汉大学 , 王五 & 教授 & 武汉理工大学 },
-  },
-}
+\title{中文标题}
+\author{项德生}
+\date{2025年12月17日}
 
 \begin{document}
 
-\maketitle % 根据学位论文类型自动生成封面，就是下面这几个命令的组合
-% \makezhtitle % 中文标题页
-% \makecommittee % 答辩委员会成员 (硕士默认不生成，但可手动调用)
-% \makeentitle % 英文标题页
+\maketitle
 
 \frontmatter
 
-\begin{abstract}
-  中文摘要
-  \keywords 关键词1；关键词2；关键词3
-\end{abstract}
+\chapter*{摘要}
+中文摘要内容。
+\par\textbf{关键词：} 关键词1；关键词2；关键词3
+\addcontentsline{toc}{chapter}{摘要}
 
-\begin{abstract*}
-  English Abstract
-  \keywords* keyword1, keyword2, keyword3
-\end{abstract*}
+\chapter*{Abstract}
+English abstract content.
+\par\textbf{Keywords:} keyword1, keyword2, keyword3
+\addcontentsline{toc}{chapter}{Abstract}
 
 \tableofcontents
 
 \mainmatter
 
-\chapter{第一章}
+\chapter{引言}
 \subfile{chapters/01-introduction}
-\subfile{chapters/01-introduction}
-\subfile{chapters/01-introduction}
+
+
+\chapter{理论}
+\subfile{chapters/02-theory}
+
+\chapter{实验装置}
+\subfile{chapters/03-setup}
+
+\chapter{里德堡原子操控}
+\subfile{chapters/04-Rydberg_control}
+
+\chapter{电场调控}
+\subfile{chapters/05-electric_field_control}
+
+
+\chapter{量子疤痕态}
+\subfile{chapters/06-quantum_scar}
+
+\chapter{OTOC}
+\subfile{chapters/07-OTOC}
+
+\chapter{LGT}
+\subfile{chapters/08-LGT}
+
 
 \backmatter
 
-\begin{acknowledgements} % 致谢
-  感谢 hustthesis 文档类。
-\end{acknowledgements}
+\chapter*{致谢}
+感谢所有老师与同学。
+\addcontentsline{toc}{chapter}{致谢}
 
 \appendix
 
 \chapter{附录}
+% 可在此处添加附录内容或通过 \subfile 引入
 
 \end{document}

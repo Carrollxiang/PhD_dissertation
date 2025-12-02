@@ -33,7 +33,11 @@
 \file_if_exist:nTF { ./Hust_style/hustthesis-d.def }
   { \tl_set:Nn \l__hust_config_path_tl { ./Hust_style/ } }
   { \tl_clear:N \l__hust_config_path_tl }
-\clist_put_right:Nn \input@path { ./Hust_style/ }
+\makeatletter
+\@ifundefined{input@path}
+  { \def\input@path{{./Hust_style/}} }
+  { \g@addto@macro\input@path{{./Hust_style/}} }
+\makeatother
 
 \RequirePackage { }
 \box_new:N \l__hust_tmpa_box
@@ -1271,6 +1275,7 @@
     \pagenumbering { arabic }
     \__hust_toc_chapter_mainmatter:
   }
+\makeatletter
 \keys_set:nn { ctex }
   {
 
@@ -1318,7 +1323,8 @@
             \__hust_chapter:D*{#4}
             \IfBooleanT{#2}
               {  \CTEX@addtocline{chapter}{#3} }
-          }
+  }
+\makeatother
           { \__hust_chapter:D[#3]{#4} }
 
       }
